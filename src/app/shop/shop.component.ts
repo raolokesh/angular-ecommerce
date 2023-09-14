@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { ShopService } from '../service/shop/shop.service';
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-shop',
   templateUrl: './shop.component.html',
@@ -9,10 +11,11 @@ export class ShopComponent {
 
   data: any;
 
-  constructor(private productservice:ShopService){
+  constructor(private productservice:ShopService,private router:Router){
   }
-  getData() {
-    this.productservice.getProduct('store/collection').subscribe(
+  
+  ngOnInit() {
+    this.productservice.getCollection('store/collection').subscribe(
       (response) => {
         this.data = response;
       },
@@ -21,8 +24,7 @@ export class ShopComponent {
       }
     );
   }
-  getDataPrint(){
-    console.log(this.data);
+  navigateToPage(pageUrl: string,id:number) {
+    this.router.navigate([pageUrl,id]);
   }
-
 }

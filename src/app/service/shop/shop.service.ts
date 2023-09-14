@@ -11,7 +11,12 @@ export class ShopService {
 
   constructor(private http:HttpClient) {}
    
-  getProduct(endpoint: string): Observable<any> {
+  getCollection(endpoint: string): Observable<any> {
+    const url = `${BASE_URL}/${endpoint}`;
+    return this.http.get(url);
+  }
+
+  getProducts(endpoint:string):Observable<any>{
     const url = `${BASE_URL}/${endpoint}`;
     return this.http.get(url);
   }
